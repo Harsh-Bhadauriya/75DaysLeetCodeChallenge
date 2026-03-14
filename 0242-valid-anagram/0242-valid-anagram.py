@@ -1,5 +1,4 @@
 class Solution:
     def isAnagram(self, s, t):
-        if sorted(s) == sorted(t):
-            return True
-        return False
+        return sorted(s) == sorted(t)
+        print(Solution().isAnagram("rat", "tar"))
