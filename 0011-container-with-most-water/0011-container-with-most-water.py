@@ -1,17 +1,17 @@
 class Solution:
     def maxArea(self, height):
         l, r = 0, len(height) - 1
-        max_area = 0
+        ans = 0
         
         while l < r:
-            h = min(height[l], height[r])
-            w = r - l
-            max_area = max(max_area, h * w)
-            
             if height[l] < height[r]:
+                area = height[l] * (r - l)
                 l += 1
             else:
+                area = height[r] * (r - l)
                 r -= 1
+            
+            if area > ans:
+                ans = area
         
-        return max_area
-print(Solution().maxArea([1,8,6,2,5,4,8,3,7]))
+        return ans
