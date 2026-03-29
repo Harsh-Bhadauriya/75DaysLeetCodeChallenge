@@ -1,15 +1,19 @@
 class Solution:
     def isValid(self, s):
         stack = []
-        mp = {')': '(', '}': '{', ']': '['}
         
         for ch in s:
-            if ch in mp:
-                if not stack or stack[-1] != mp[ch]:
-                    return False
-                stack.pop()
-            else:
+            if ch == '(' or ch == '{' or ch == '[':
                 stack.append(ch)
+            else:
+                if not stack:
+                    return False
+                
+                top = stack.pop()
+                
+                if (ch == ')' and top != '(') or \
+                   (ch == '}' and top != '{') or \
+                   (ch == ']' and top != '['):
+                    return False
         
         return not stack
-print(Solution().isValid("()[]{}"))
